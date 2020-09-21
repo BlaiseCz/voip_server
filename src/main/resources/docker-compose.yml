@@ -1,0 +1,11 @@
+version: "3"
+services:
+  mongodb:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    image: mongo:3.2.4
+    container_name: "mongodb"
+    ports:
+      - 27017:27017
+    command: --smallfiles
