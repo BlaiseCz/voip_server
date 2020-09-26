@@ -67,9 +67,9 @@ public class UserService {
         UserDAO savedUser = registerNewUser(registrationForm);
 
         emailUtility.sendConfirmationEmail(new NotificationEmail("Please Activate your Account",
-                registrationForm.getEmail(), "Thank you for signing up to Spring Reddit, " +
+                registrationForm.getEmail(), "Thank you for signing up to VoIP TIP, " +
                 "please click on the below url to activate your account : " +
-                "http://localhost:8080/confirm/" + savedUser.get_id()));
+                "https://voiptipchat.herokuapp.com/confirm/" + savedUser.get_id()));
         return UserTO.map(savedUser);
     }
 

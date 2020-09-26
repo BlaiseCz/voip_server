@@ -1,9 +1,6 @@
 package server.data.DTOs;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import server.data.DAOs.UserDAO;
 
 import java.util.List;

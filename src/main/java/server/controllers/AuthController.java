@@ -14,6 +14,7 @@ import server.utility.TokenServiceUtils;
 import server.utility.Validator;
 import server.utility.exceptions.WrongFormatException;
 
+
 @RestController
 @RequestMapping(value = "/auth")
 public class AuthController {
@@ -53,4 +54,5 @@ public class AuthController {
     public String test() {
         return "test works!";
     }
+
 }
