@@ -24,9 +24,6 @@ public class SecurityService {
     public SecurityInfoDAO getNewToken(String userID) {
         String token = getTokenString();
 
-//        securityRepository.findByUserID(userID)
-//                .ifPresent((e) -> securityRepository.delete(e));
-
         return SecurityInfoDAO.builder()
                 .userID(userID)
                 .token(token)
@@ -42,20 +39,6 @@ public class SecurityService {
                 .hashString(originalString, StandardCharsets.UTF_8)
                 .toString();
     }
-
-//    public SecurityInfoDAO validateAndRenewToken(String userID, String token) {
-//        SecurityInfoDAO securityInfoDAO = securityRepository.findByUserID(userID)
-//                .orElseThrow(NoSuchUserException::new);
-//
-//        if (isTokenValid(securityInfoDAO, token)) {
-//            String renewedToken = getTokenString();
-//            securityInfoDAO.setToken(renewedToken);
-//            securityInfoDAO.setExpires(System.currentTimeMillis() + (90 * 60 * 1000));
-//            return securityRepository.save(securityInfoDAO);
-//        }
-//
-//        throw new CannotRenewTokenException("Current token invalid, login again");
-//    }
 
     public boolean isTokenValid(String userID, String token) {
         return TokenServiceUtils.isTokenValid(userID, token);
