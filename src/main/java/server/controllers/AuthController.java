@@ -48,4 +48,9 @@ public class AuthController {
         }
         throw new WrongFormatException("Invalid data format!");
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "test works!";
+    }
 }

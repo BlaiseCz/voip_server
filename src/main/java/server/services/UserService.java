@@ -1,12 +1,10 @@
 package server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import server.data.DAOs.SecurityInfoDAO;
+import server.data.DAOs.NotificationEmail;
 import server.data.DAOs.UserDAO;
 import server.data.DTOs.*;
-import server.repositories.SecurityRepository;
 import server.repositories.UsersRepository;
 import server.utility.TokenServiceUtils;
 import server.utility.exceptions.*;
@@ -20,10 +18,7 @@ public class UserService {
     private UsersRepository usersRepository;
 
     @Autowired
-    private SecurityRepository securityRepository;
-
-    @Autowired
-    private EmailUtility emailUtility;
+    private MailService emailUtility;
 
     public UserFavouritesTO getUserByUsername(String username) {
         UserDAO userDAO = usersRepository
@@ -70,9 +65,11 @@ public class UserService {
                 });
 
         UserDAO savedUser = registerNewUser(registrationForm);
-        emailUtility.sendConfirmationEmail(registrationForm,
-                savedUser.get_id()
-                        .toString());
+
+        emailUtility.sendConfirmationEmail(new NotificationEmail("Please Activate your Account",
+                registrationForm.getEmail(), "Thank you for signing up to Spring Reddit, " +
+                "please click on the below url to activate your account : " +
+                "http://localhost:8080/confirm/" + savedUser.get_id()));
         return UserTO.map(savedUser);
     }
 

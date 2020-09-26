@@ -31,7 +31,7 @@ public class ConversationController {
     /*
     Someone who wants to begin conversation with someone else starts here DH (gives p, g, A and list of people who he wants to call)
     */
-    @PostMapping(value = "/calling")
+    @PostMapping("/calling")
     public ResponseEntity<ConversationTO> startConversation(
             @RequestParam("userID") String userID,
             @RequestHeader("token") String token,
@@ -45,7 +45,7 @@ public class ConversationController {
         }
     }
 
-    @PostMapping(value = "/beingCalled")
+    @PostMapping("/beingCalled")
     public ResponseEntity<ConversationTO> addToConversation(
             @RequestParam("userID") String userID,
             @RequestHeader("token") String token,
@@ -59,7 +59,7 @@ public class ConversationController {
         }
     }
 
-    @PostMapping(value = "/hangUp")
+    @PostMapping("/hangUp")
     public ResponseEntity<?> hangUp(
             @RequestParam("userID") String userID,
             @RequestParam("conversationID") String conversationID,
@@ -80,7 +80,7 @@ public class ConversationController {
         }
     }
 
-    @GetMapping(value = "/currentConversation")
+    @GetMapping( "/currentConversation")
     public ResponseEntity<CurrentConversationTO> getCurrentConversation(
             @RequestParam("userID") String userID,
             @RequestParam("conversationID") String conversationID,
@@ -94,7 +94,7 @@ public class ConversationController {
         }
     }
 
-    @GetMapping(value = "/history")
+    @GetMapping( "/history")
     public ResponseEntity<List<CurrentConversationTO>> getAllConversations(
             @RequestParam("userID") String userID,
             @RequestHeader("token") String token

@@ -27,12 +27,12 @@ public class UserController {
     private SecurityService securityService;
 
     //debug only
-    @GetMapping(value = "/test")
+    @GetMapping( "/test")
     public boolean test() {
         return true;
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping( "/all")
     public ResponseEntity<List<UserShortTO>> getAllUsers(
             @RequestParam("userID") String userID,
             @RequestHeader("token") String token) {
@@ -43,7 +43,7 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/me")
+    @GetMapping( "/me")
     public ResponseEntity<UserTO> getMeXD(
             @RequestParam("userID") String userID,
             @RequestHeader("token") String token) {
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     //debug only
-    @GetMapping(value = "/{username}")
+    @GetMapping( "/{username}")
     public ResponseEntity<?> getUserByUsername(@PathVariable("username") String username) {
         if (Validator.isUsernameValid(username)) {
             return ResponseEntity.ok(userService.getUserByUsername(username));
@@ -63,7 +63,7 @@ public class UserController {
         throw new WrongFormatException("Invalid username!");
     }
 
-    @GetMapping(value = "/favourites")
+    @GetMapping( "/favourites")
     public ResponseEntity<?> getFavouritesOfUser(@RequestParam("userID") String userID,
                                                  @RequestHeader("token") String token) {
         try {
@@ -78,7 +78,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/favourites")
+    @PostMapping( "/favourites")
     public ResponseEntity<List<UserShortTO>> addUserToFavourites(
             @RequestParam("userID") String userID,
             @RequestParam("favUsername") String favUsername,
@@ -91,7 +91,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(value = "/favourites")
+    @DeleteMapping( "/favourites")
     public ResponseEntity<List<UserShortTO>> removeUserFromFavourites(
             @RequestParam("userID") String userID,
             @RequestParam("favUsername") String favUsername,
@@ -105,14 +105,14 @@ public class UserController {
     }
 
     //debug only
-    @DeleteMapping(value = "/all")
+    @DeleteMapping( "/all")
     public ResponseEntity<String> removeAllUsers() {
         userService.deleteAllUsers();
 
         return ResponseEntity.ok("All users deleted");
     }
 
-    @DeleteMapping(value = "/{userID}")
+    @DeleteMapping( "/{userID}")
     public ResponseEntity<String> removeUser(@PathVariable String userID,
                                         @RequestHeader("token") String token) {
         if (TokenServiceUtils.isTokenValid(userID, token)) {
@@ -123,7 +123,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(value = "/favourites/all")
+    @DeleteMapping( "/favourites/all")
     public ResponseEntity<String> deleteAllFavouritesOfUser(@RequestParam("userID") String userID,
                                                        @RequestHeader("token") String token) {
         userService.deleteAllFavouritesOfUser(userID);
